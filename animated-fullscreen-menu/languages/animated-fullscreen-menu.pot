@@ -1,0 +1,202 @@
+# Copyright (C) 2019 animatedfsmenu
+# This file is distributed under the same license as the animatedfsmenu package.
+msgid ""
+msgstr ""
+"Project-Id-Version: animatedfsmenu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: animated-fullscreen-menu.php:30
+msgid "Animated FullScreen Menu"
+msgstr ""
+
+#: cmb.php:68
+msgid "Animated Fullscreen Menu"
+msgstr ""
+
+#: cmb.php:77
+msgid "Activate Animated Fullscreen Menu"
+msgstr ""
+
+#: cmb.php:78
+msgid "Leave unchecked if you want to desactivate it."
+msgstr ""
+
+#: cmb.php:86
+msgid "Mobile only?"
+msgstr ""
+
+#: cmb.php:87
+msgid "This menu should be appears only for mobile devices? We consider mobile devices as fewer than 1024px resolution."
+msgstr ""
+
+#: cmb.php:95
+msgid "Initial Background Menu"
+msgstr ""
+
+#: cmb.php:96
+msgid "First color (closed Menu)."
+msgstr ""
+
+#: cmb.php:106
+msgid "Opened Background Menu"
+msgstr ""
+
+#: cmb.php:107
+msgid "Menu color when is opened."
+msgstr ""
+
+#: cmb.php:117
+msgid "Background Image"
+msgstr ""
+
+#: cmb.php:118
+msgid "Background Image when menu is opened. Leave blank to use colors above."
+msgstr ""
+
+#: cmb.php:126
+msgid "Font Color"
+msgstr ""
+
+#: cmb.php:127
+msgid "Color for fonts, social media icons and navbar hamburger."
+msgstr ""
+
+#: cmb.php:136
+msgid "Select Menu"
+msgstr ""
+
+#: cmb.php:137
+msgid "If you select WordPress Menu Location, you need to define your Menu at Appearance->Menus"
+msgstr ""
+
+#: cmb.php:146
+msgid "Close menu on clicking a menu item"
+msgstr ""
+
+#: cmb.php:147
+msgid "Useful if you are using the menu with anchor links."
+msgstr ""
+
+#: cmb.php:155
+msgid "Lateral menu at specific pages?"
+msgstr ""
+
+#: cmb.php:156
+msgid "This option transforms your menu into a lateral side menu. Does not affect mobile devices."
+msgstr ""
+
+#: cmb.php:164
+msgid "Pages with lateral menu"
+msgstr ""
+
+#: cmb.php:177
+msgid "Select Font Family"
+msgstr ""
+
+#: cmb.php:178
+msgid "Font for Menu Text. Leave blank if you want use your actual font from your theme."
+msgstr ""
+
+#: cmb.php:187
+msgid "Select Font Weight"
+msgstr ""
+
+#: cmb.php:188
+msgid "Font Weight for Menu Text."
+msgstr ""
+
+#: cmb.php:197
+msgid "Include Privacy Policy Page (GPRD)"
+msgstr ""
+
+#: cmb.php:198
+msgid "This page is selected at Settings -> Privacy."
+msgstr ""
+
+#: cmb.php:207
+msgid "Social Icons"
+msgstr ""
+
+#: cmb.php:224
+msgid "Social Icon Title"
+msgstr ""
+
+#: cmb.php:225
+msgid "Enter the post title for the link text."
+msgstr ""
+
+#: cmb.php:234
+msgid "Social Icon"
+msgstr ""
+
+#: cmb.php:267
+msgid "Social URL"
+msgstr ""
+
+#: cmb.php:268
+msgid "Enter the url of the social media."
+msgstr ""
+
+#: cmb.php:276
+msgid "Animation Direction"
+msgstr ""
+
+#: cmb.php:277
+msgid "Select your animation direction."
+msgstr ""
+
+#: cmb.php:291
+msgid "Add Language Switcher"
+msgstr ""
+
+#: cmb.php:292
+msgid "Check this if you want to use language switcher from Polylang Plugin."
+msgstr ""
+
+#: cmb.php:302
+msgid "Add WooCommerce Menu?"
+msgstr ""
+
+#: cmb.php:303
+msgid "Adds \"My Account\", \"Shop\", \"Cart\" and \"Checkout\" menus"
+msgstr ""
+
+#: cmb.php:312
+msgid "Add Search Bar?"
+msgstr ""
+
+#: cmb.php:313, cmb.php:322
+msgid "Adds a native WP search bar."
+msgstr ""
+
+#: cmb.php:321
+msgid "Search input placeholder"
+msgstr ""
+
+#: cmb.php:325
+msgid "Search something..."
+msgstr ""
+
+#: cmb.php:334
+msgid "Remove Data after uninstall"
+msgstr ""
+
+#: cmb.php:335
+msgid "If you do not select this option, your data is not deleted."
+msgstr ""
+
+#: cmb.php:354
+msgid "None/Empty"
+msgstr ""
+
+#: cmb.php:355
+msgid "WordPress Menu Location"
+msgstr ""
