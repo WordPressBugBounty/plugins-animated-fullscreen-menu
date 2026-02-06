@@ -1,0 +1,23 @@
+{
+    "name": "developer/animated-fullscreen-menu",
+    "description": "Animated Fullscreen Menu for WordPress",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Samuel Silva",
+            "homepage": "https://wp-fullscreen-menu.com/"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "AnimatedFullscreenMenu\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=7.4"
+    },
+    "config": {
+        "optimize-autoloader": true
+    }
+}

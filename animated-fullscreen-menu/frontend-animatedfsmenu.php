@@ -1,7 +1,8 @@
 <?php
 
-// Check if there is a preview
-$is_preview   = isset( $_GET['afs_preview_menu'] ) ? $_GET['afs_preview_menu'] : false;
+// Check if there is a preview (sanitized)
+$is_preview   = isset( $_GET['afs_preview_menu'] ) ? sanitize_text_field( wp_unslash( $_GET['afs_preview_menu'] ) ) : false;
+$is_preview   = ( 'true' === $is_preview && current_user_can( 'manage_options' ) ) ? true : false;
 $scripts_hook = $is_preview ? 'admin_enqueue_scripts' : 'wp_enqueue_scripts';
 $render_hook  = $is_preview ? 'admin_init' : 'wp_head';
 

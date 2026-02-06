@@ -2,10 +2,10 @@
 Contributors: samuelsilvapt
 Author: Samuel Silva
 Tags: menu, fullscreenmenu, woocommercemenu, animatedmenu, mobilemenu
-Tested up to: 6.4.3
-Requires at least: 4.1
-Stable tag: 2.8.0
-Requires PHP: 7.0
+Tested up to: 6.9
+Requires at least: 5.0
+Stable tag: 3.0.0
+Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -110,6 +110,29 @@ Sure. By default your data will not erased. To clean your options, please select
 8. Menu Settings - Menu Content
 
 == Changelog ==
+= 3.0.0 =
+* **Major Release:** Complete codebase modernization for better performance and future WordPress Block Editor (Site Editor) compatibility
+* **Architecture:** Refactored to modern Object-Oriented Programming (OOP) with namespaced classes and PSR-4 autoloading
+* **New Structure:** Organized code into dedicated classes: Plugin, Admin, Frontend, MenuRenderer, AssetLoader, BlockManager, and integration classes for WooCommerce, Polylang, and Freemius
+* **Fixed:** Resolved `_load_textdomain_just_in_time` warning by properly deferring CMB2 loading until after textdomain initialization
+* **Improved:** Centralized options handling with new Options utility class
+* **Improved:** Better separation of concerns between admin, frontend, and block functionality
+* **Improved:** Cleaner main plugin file - now serves as bootstrap only
+* **Developer:** Added Composer support for autoloading
+* **Compatibility:** Fully backward compatible - all existing settings are preserved and work as before
+* **Foundation:** This release lays the groundwork for future Site Editor (Full Site Editing) block support
+
+= 2.9.0 =
+* **Security:** Enhanced security for preview menu feature with proper input sanitization and nonce verification
+* **Updated:** Freemius SDK updated from 2.6.1 to 2.8.1 for better performance and compatibility
+* **Updated:** WordPress compatibility tested up to 6.7
+* **Updated:** Minimum WordPress version raised to 5.0
+* **Updated:** Minimum PHP version raised to 7.4 (with graceful error handling for older versions)
+* **Added:** Automatic settings backup system during plugin updates
+* **Added:** Version migration framework for future updates
+* **Improved:** Code quality and WordPress coding standards compliance
+* **Note:** This update is fully backward compatible - all existing settings will be preserved
+
 = 2.8 =
 * Preview Menu feature
 = 2.7 =

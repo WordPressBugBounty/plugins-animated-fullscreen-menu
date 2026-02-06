@@ -1,26 +1,47 @@
 <?php
+/**
+ * CMB2 Settings Configuration
+ *
+ * Note: CMB2 and its extensions are now loaded via src/Admin/Admin.php
+ * on the admin_init hook (after textdomain is loaded) to fix the
+ * _load_textdomain_just_in_time warning.
+ *
+ * This file only contains the settings configuration, not the library loading.
+ *
+ * @package AnimatedFullscreenMenu
+ */
 
-
-if ( file_exists( dirname( __FILE__ ) . '/vendor/CMB2/init.php' ) ) {
-	require_once dirname( __FILE__ ) . '/vendor/CMB2/init.php';
+// Prevent direct access.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
+// Only load CMB2 here if not already loaded (backward compatibility).
+// In normal operation, Admin.php loads CMB2 before including this file.
+if ( ! defined( 'CMB2_LOADED' ) ) {
+	if ( file_exists( dirname( __FILE__ ) . '/vendor/CMB2/init.php' ) ) {
+		require_once dirname( __FILE__ ) . '/vendor/CMB2/init.php';
+	}
 
-if ( file_exists( dirname( __FILE__ ) . '/vendor/cmb2-field-faiconselect/iconselect.php' ) ) {
-	require_once dirname( __FILE__ ) . '/vendor/cmb2-field-faiconselect/iconselect.php';
+	if ( file_exists( dirname( __FILE__ ) . '/vendor/cmb2-field-faiconselect/iconselect.php' ) ) {
+		require_once dirname( __FILE__ ) . '/vendor/cmb2-field-faiconselect/iconselect.php';
+	}
+
+	if ( file_exists( dirname( __FILE__ ) . '/vendor/cmb2-tabs/cmb2-tabs.php' ) ) {
+		require_once dirname( __FILE__ ) . '/vendor/cmb2-tabs/cmb2-tabs.php';
+	}
+
+	if ( file_exists( dirname( __FILE__ ) . '/vendor/cmb2-conditionals/cmb2-conditionals.php' ) && isset( $_GET['page'] ) && 'animatedfsm_settings' === $_GET['page'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		require_once dirname( __FILE__ ) . '/vendor/cmb2-conditionals/cmb2-conditionals.php';
+	}
 }
 
-if ( file_exists( dirname( __FILE__ ) . '/vendor/cmb2-tabs/cmb2-tabs.php' ) ) {
-	require_once dirname( __FILE__ ) . '/vendor/cmb2-tabs/cmb2-tabs.php';
-}
-
-function animatedfsmenu_backend_styles() { //phpcs:ignore
-	wp_enqueue_style( 'styles-fullscreen-menu', plugins_url( 'admin/css/styles.css', __FILE__ ), array(), '1.0' );
-}
-add_action( 'admin_enqueue_scripts', 'animatedfsmenu_backend_styles' );
-
-if ( file_exists( dirname( __FILE__ ) . '/vendor/cmb2-conditionals/cmb2-conditionals.php' ) && isset($_GET['page']) && 'animatedfsm_settings' == $_GET['page'] ) {
-	require_once dirname( __FILE__ ) . '/vendor/cmb2-conditionals/cmb2-conditionals.php';
+// Enqueue admin styles (only if not already enqueued by Admin class).
+if ( ! function_exists( 'animatedfsmenu_backend_styles' ) ) {
+	function animatedfsmenu_backend_styles() { // phpcs:ignore
+		wp_enqueue_style( 'styles-fullscreen-menu', plugins_url( 'admin/css/styles.css', __FILE__ ), array(), '1.0' );
+	}
+	add_action( 'admin_enqueue_scripts', 'animatedfsmenu_backend_styles' );
 }
 
 
@@ -55,9 +76,12 @@ function animatedfsmenu_hide_if_no_cats( $field ) {
 }
 
 
-add_action( 'cmb2_admin_init', 'animatedfsmenu_register_theme_options_metabox' );
 /**
  * Hook in and register a metabox to handle a theme options page and adds a menu item.
+ *
+ * Note: This function is called directly when this file is loaded during cmb2_admin_init.
+ * We don't use add_action('cmb2_admin_init', ...) because the hook is already firing
+ * when this file is included by Admin.php.
  */
 function animatedfsmenu_register_theme_options_metabox() {
 
@@ -67,7 +91,7 @@ function animatedfsmenu_register_theme_options_metabox() {
 	$cmb2_tabs_args = apply_filters( 'animatedfsmenu_cmb2_tabs', 
 		array(
 			'id'           => 'animatedfsmenu_theme_options_page',
-			'title'        => esc_html__( 'Fullscreen Menu Options', 'animated-fullscreen-menu' ),
+			'title'        => esc_html__( 'Fullscreen Menu', 'animated-fullscreen-menu' ),
 			'object_types' => array( 'options-page' ),
 			'option_key'   => 'animatedfsm_settings',
 			'icon_url'     => 'dashicons-menu',
