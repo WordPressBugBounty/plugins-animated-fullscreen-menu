@@ -4,7 +4,7 @@
  * Plugin URI: animated-fullscreen-menu
  * Description: Fullscreen Menu for your Website. Create a fullscreen menu with a nice animation effect and a mobile friendly navigation. Customize the menu colors, fonts, background, animations, buttons and more.
  * Author: Samuel Silva
- * Version: 3.0.0
+ * Version: 3.0.1
  * Author URI: https://wp-fullscreen-menu.com/
  * Text Domain: animated-fullscreen-menu
  * Domain Path: /languages
@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) || ! function_exists( 'add_action' ) ) {
 }
 
 // Define plugin constants.
-define( 'ANIMATEDFSM_VERSION', '3.0.0' );
+define( 'ANIMATEDFSM_VERSION', '3.0.1' );
 define( 'ANIMATEDFSM_PLUGIN_FILE', __FILE__ );
 define( 'ANIMATEDFSM_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ANIMATEDFSM_PLUGIN_URL', plugin_dir_url( __FILE__ ) );

@@ -4,7 +4,7 @@ Author: Samuel Silva
 Tags: menu, fullscreenmenu, woocommercemenu, animatedmenu, mobilemenu
 Tested up to: 6.9
 Requires at least: 5.0
-Stable tag: 3.0.0
+Stable tag: 3.0.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -110,6 +110,10 @@ Sure. By default your data will not erased. To clean your options, please select
 8. Menu Settings - Menu Content
 
 == Changelog ==
+= 3.0.1 =
+* **Fixed:** Resolved `_load_textdomain_just_in_time` warning triggered by Freemius i18n override
+* **Fixed:** Changed `register_nav_menu` hook from `init` to `after_setup_theme` (WordPress recommended)
+
 = 3.0.0 =
 * **Major Release:** Complete codebase modernization for better performance and future WordPress Block Editor (Site Editor) compatibility
 * **Architecture:** Refactored to modern Object-Oriented Programming (OOP) with namespaced classes and PSR-4 autoloading

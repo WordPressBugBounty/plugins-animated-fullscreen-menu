@@ -84,8 +84,8 @@ class Freemius {
 		// Signal that SDK was initiated.
 		do_action( 'animatedfsm_loaded' );
 
-		// Override i18n strings.
-		$this->override_i18n();
+		// Override i18n strings (defer to init to avoid "too early" translation notice).
+		add_action( 'init', array( $this, 'override_i18n' ) );
 	}
 
 	/**
@@ -93,7 +93,7 @@ class Freemius {
 	 *
 	 * @return void
 	 */
-	private function override_i18n(): void {
+	public function override_i18n(): void {
 		if ( null === self::$freemius ) {
 			return;
 		}

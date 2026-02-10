@@ -23,7 +23,7 @@ final class Plugin {
 	 *
 	 * @var string
 	 */
-	public const VERSION = '3.0.0';
+	public const VERSION = '3.0.1';
 
 	/**
 	 * Minimum PHP version required.
@@ -110,8 +110,8 @@ final class Plugin {
 		// Load textdomain.
 		add_action( 'init', array( $this, 'load_textdomain' ) );
 
-		// Register menu location.
-		add_action( 'init', array( $this, 'register_menu_location' ) );
+		// Register menu location (after_setup_theme is the recommended hook for register_nav_menu).
+		add_action( 'after_setup_theme', array( $this, 'register_menu_location' ) );
 
 		// Check version and run migrations.
 		add_action( 'plugins_loaded', array( $this, 'check_version' ), 20 );
