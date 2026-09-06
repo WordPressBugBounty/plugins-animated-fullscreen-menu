@@ -87,7 +87,7 @@ function animatedfsmenu_register_theme_options_metabox() {
 
 	
 
-	$pro_user = animatedfsm()->is__premium_only();
+	$pro_user = \AnimatedFullscreenMenu\Integrations\Freemius::has_paid_plan();
 	$cmb2_tabs_args = apply_filters( 'animatedfsmenu_cmb2_tabs', 
 		array(
 			'id'           => 'animatedfsmenu_theme_options_page',
@@ -889,9 +889,13 @@ function animatedfsm_get_menus() { //phpcs:ignore
 	return $array_menus;
 }
 
-function animatedfsm_get_fonts( $pro_user ) { //phpcs:ignore
-	
-	$google_fonts_name = [
+/**
+ * Font list available to every user (free and PRO).
+ *
+ * @return array
+ */
+function animatedfsm_get_free_fonts() {
+	return array(
 		'Nunito Sans',
 		'Amiko',
 		'Archivo Black',
@@ -909,22 +913,105 @@ function animatedfsm_get_fonts( $pro_user ) { //phpcs:ignore
 		'Prompt',
 		'Ubuntu',
 		'Work Sans',
-	];
+	);
+}
+
+/**
+ * Extra font list unlocked for PRO users.
+ *
+ * This used to be fetched from a remote REST endpoint. The list is now bundled
+ * so the settings screen never depends on an external request. Use the
+ * 'animatedfsm_pro_fonts' filter to add your own families.
+ *
+ * @return array
+ */
+function animatedfsm_get_pro_fonts() {
+	return array(
+		'Abril Fatface',
+		'Anton',
+		'Arvo',
+		'Barlow',
+		'Bebas Neue',
+		'Bitter',
+		'Cabin',
+		'Cairo',
+		'Cormorant Garamond',
+		'Crimson Text',
+		'DM Sans',
+		'DM Serif Display',
+		'Dosis',
+		'EB Garamond',
+		'Exo 2',
+		'Figtree',
+		'Fira Sans',
+		'Fjalla One',
+		'Heebo',
+		'Hind',
+		'IBM Plex Sans',
+		'IBM Plex Serif',
+		'Inconsolata',
+		'Inter',
+		'Josefin Sans',
+		'Jost',
+		'Kanit',
+		'Karla',
+		'Libre Baskerville',
+		'Libre Franklin',
+		'Manrope',
+		'Merriweather',
+		'Mulish',
+		'Noto Sans',
+		'Noto Serif',
+		'Nunito',
+		'Outfit',
+		'Overpass',
+		'Playfair Display',
+		'Poppins',
+		'PT Serif',
+		'Public Sans',
+		'Quicksand',
+		'Rajdhani',
+		'Righteous',
+		'Rubik',
+		'Sora',
+		'Space Grotesk',
+		'Space Mono',
+		'Titillium Web',
+		'Urbanist',
+		'Vollkorn',
+		'Zilla Slab',
+	);
+}
+
+function animatedfsm_get_fonts( $pro_user ) { //phpcs:ignore
+
+	$google_fonts_name = animatedfsm_get_free_fonts();
 
 	if ( $pro_user ) {
-		// Get Google Fonts from this URL API: https://wp-fullscreen-menu.com/wp-json/animatedfsmenu/v1/googlefonts
-		$google_fonts_from_api = wp_remote_get( 'https://wp-fullscreen-menu.com/wp-json/animatedfsmenu/v1/googlefonts' );
-		if ( $google_fonts_from_api && isset( $google_fonts_from_api['body'] ) ) {	
-			$google_fonts_name = json_decode( $google_fonts_from_api['body'] );
+		/**
+		 * Filter the extra font families offered to PRO users.
+		 *
+		 * @param array $pro_fonts Font family names as used by Google Fonts.
+		 */
+		$pro_fonts = apply_filters( 'animatedfsm_pro_fonts', animatedfsm_get_pro_fonts() );
+
+		if ( is_array( $pro_fonts ) && ! empty( $pro_fonts ) ) {
+			$google_fonts_name = array_merge( $google_fonts_name, $pro_fonts );
 		}
 	}
-	$google_fonts;
+
+	// Drop duplicates and empty entries, then sort alphabetically for easier scanning.
+	$google_fonts_name = array_filter( array_unique( $google_fonts_name ) );
+	sort( $google_fonts_name );
+
+	$google_fonts = array();
 
 	$google_fonts['inherit'] = 'Default';
 
 	foreach ( $google_fonts_name as $font ) {
 		$google_fonts[ $font ] = $font;
 	}
+
 	return $google_fonts;
 }
 

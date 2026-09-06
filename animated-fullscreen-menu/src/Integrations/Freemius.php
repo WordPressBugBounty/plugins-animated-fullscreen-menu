@@ -54,6 +54,14 @@ class Freemius {
 
 		require_once $freemius_path;
 
+		/*
+		 * The plugin is distributed as a single package: the same build serves free
+		 * and PRO users, and the license unlocks PRO features at runtime.
+		 *
+		 * Keep this false. It tells Freemius there is no separate premium package to
+		 * download, so it never tries to swap this build for another one. PRO gating
+		 * is decided by Freemius::has_paid_plan(), which checks the license.
+		 */
 		$pro = false;
 
 		self::$freemius = fs_dynamic_init(
@@ -116,7 +124,11 @@ class Freemius {
 	}
 
 	/**
-	 * Check if user has premium license.
+	 * Check if the current install has an active paid license.
+	 *
+	 * The plugin ships as a single package, so PRO features are unlocked by the
+	 * license at runtime rather than by a separate premium build. This checks the
+	 * license itself, not whether this is the premium package.
 	 *
 	 * @return bool
 	 */
@@ -125,7 +137,7 @@ class Freemius {
 			return false;
 		}
 
-		return self::$freemius->is__premium_only();
+		return self::$freemius->has_features_enabled_license();
 	}
 
 	/**
@@ -142,12 +154,18 @@ class Freemius {
 	}
 
 	/**
-	 * Check if user has any paid plan (premium or trial).
+	 * Check whether PRO features should be available (active license or trial).
+	 *
+	 * This is the single source of truth for PRO gating across the plugin.
 	 *
 	 * @return bool
 	 */
 	public static function has_paid_plan(): bool {
-		return self::is_premium() || self::is_trial();
+		if ( null === self::$freemius ) {
+			return false;
+		}
+
+		return self::$freemius->can_use_premium_code();
 	}
 }
 

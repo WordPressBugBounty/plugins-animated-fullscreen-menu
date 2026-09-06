@@ -2,7 +2,7 @@
 // Create a class that will handle some date of the plugin. starting with Heatmap (saving some data in the database) and display it in the wp-admin panel
 // Path: inc/class-analytics.php
 // Compare this snippet from animated-fullscreen-menu.php:
-//  * Author URI: https://wp-fullscreen-menu.com/
+//  * Author URI: https://samuelsilva.pt/
 //  * Text Domain: animated-fullscreen-menu
 //  * Domain Path: /languages
 //  **/

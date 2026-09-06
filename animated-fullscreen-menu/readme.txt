@@ -4,7 +4,7 @@ Author: Samuel Silva
 Tags: menu, fullscreenmenu, woocommercemenu, animatedmenu, mobilemenu
 Tested up to: 6.9
 Requires at least: 5.0
-Stable tag: 3.0.1
+Stable tag: 3.0.3
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -14,14 +14,6 @@ Boost user engagement with a fullscreen menu on your website.
 == Description ==
 Add a Full Screen Menu to your WordPress website with this plugin - it features a fully customizable experience, allowing you to build the menu using all the available settings that best suit your site. This plugin is also compatible with WooCommerce and Polylang, so you can easily display WooCommerce elements like the user's cart and default menus. Upgrade your website's navigation with this intuitive and visually appealing plugin.
 The Menu button can be added as a Block - compatible with Block Themes.
-
- = Demos =
-
-* [Demo1](https://wp-fullscreen-menu.com/demo1/)
-* [Demo2](https://wp-fullscreen-menu.com/demo2/)
-* [Demo3](https://wp-fullscreen-menu.com/demo3/)
-* [Demo4 (WooCommerce Cart)](https://wp-fullscreen-menu.com/demo4/)
-
 
 = Design/Appearance Features =
 This plugin offers a range of features to enhance your website's menu:
@@ -110,6 +102,15 @@ Sure. By default your data will not erased. To clean your options, please select
 8. Menu Settings - Menu Content
 
 == Changelog ==
+= 3.0.3 =
+* **Fixed:** PRO features are now unlocked as soon as a license or trial is active, without requiring a separate download
+
+= 3.0.2 =
+* **Fixed:** Fatal error on the settings screen caused by an unreachable remote request for the font list
+* **Fixed:** PRO features not being applied on the frontend for users with an active license
+* **Improved:** Font list is now bundled with the plugin instead of being fetched remotely, so the settings screen loads faster and works offline
+* **Improved:** License checks now consistently include active trials
+
 = 3.0.1 =
 * **Fixed:** Resolved `_load_textdomain_just_in_time` warning triggered by Freemius i18n override
 * **Fixed:** Changed `register_nav_menu` hook from `init` to `after_setup_theme` (WordPress recommended)

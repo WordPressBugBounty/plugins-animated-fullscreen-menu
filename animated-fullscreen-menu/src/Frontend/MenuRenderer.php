@@ -10,6 +10,7 @@ namespace AnimatedFullscreenMenu\Frontend;
 use AnimatedFullscreenMenu\Utilities\Options;
 use AnimatedFullscreenMenu\Integrations\WooCommerce;
 use AnimatedFullscreenMenu\Integrations\Polylang;
+use AnimatedFullscreenMenu\Integrations\Freemius;
 
 /**
  * Handles rendering of the fullscreen menu.
@@ -64,7 +65,7 @@ class MenuRenderer {
 	 * @return bool
 	 */
 	private function check_pro_status(): bool {
-		return false;
+		return Freemius::has_paid_plan();
 	}
 
 	/**

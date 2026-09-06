@@ -8,6 +8,7 @@
 namespace AnimatedFullscreenMenu\Frontend;
 
 use AnimatedFullscreenMenu\Utilities\Options;
+use AnimatedFullscreenMenu\Integrations\Freemius;
 
 /**
  * Handles loading of frontend scripts and styles.
@@ -112,7 +113,7 @@ class AssetLoader {
 	 * @return void
 	 */
 	private function localize_script(): void {
-		$is_pro = function_exists( 'animatedfsm' ) && animatedfsm()->is__premium_only();
+		$is_pro = Freemius::has_paid_plan();
 
 		wp_localize_script(
 			'afsmenu-scripts',
