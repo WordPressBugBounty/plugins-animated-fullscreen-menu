@@ -27,6 +27,8 @@
 	require_once WP_FS__DIR_INCLUDES . '/managers/class-fs-clone-manager.php';
 	require_once WP_FS__DIR_INCLUDES . '/managers/class-fs-permission-manager.php';
 	require_once WP_FS__DIR_INCLUDES . '/managers/class-fs-cache-manager.php';
+	require_once WP_FS__DIR_INCLUDES . '/managers/class-fs-checkout-manager.php';
+	require_once WP_FS__DIR_INCLUDES . '/managers/class-fs-contact-form-manager.php';
 	require_once WP_FS__DIR_INCLUDES . '/managers/class-fs-admin-notice-manager.php';
 	require_once WP_FS__DIR_INCLUDES . '/managers/class-fs-admin-menu-manager.php';
 	require_once WP_FS__DIR_INCLUDES . '/managers/class-fs-key-value-storage.php';
@@ -56,4 +58,5 @@
     require_once WP_FS__DIR_INCLUDES . '/class-fs-admin-notices.php';
 	require_once WP_FS__DIR_INCLUDES . '/class-freemius-abstract.php';
 	require_once WP_FS__DIR_INCLUDES . '/sdk/Exceptions/Exception.php';
+	require_once WP_FS__DIR_INCLUDES . '/class-fs-hook-snapshot.php';
 	require_once WP_FS__DIR_INCLUDES . '/class-freemius.php';

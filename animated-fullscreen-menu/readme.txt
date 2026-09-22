@@ -4,7 +4,7 @@ Author: Samuel Silva
 Tags: menu, fullscreenmenu, woocommercemenu, animatedmenu, mobilemenu
 Tested up to: 7.1
 Requires at least: 5.0
-Stable tag: 3.0.4
+Stable tag: 3.0.5
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -102,6 +102,13 @@ Sure. By default your data will not erased. To clean your options, please select
 8. Menu Settings - Menu Content
 
 == Changelog ==
+= 3.0.5 =
+* **New:** Redesigned the Pro pricing page to match the plugin's look
+* **Improved:** Updated the Freemius SDK to 2.13.4, which brings the new pricing page to the plugin settings
+* **Fixed:** Uninstall cleanup now runs through the Freemius uninstall hook instead of an uninstall.php file, which was bypassing the SDK's own uninstall handling
+* **Fixed:** Freemius is now initialized as soon as the plugin loads, as the SDK requires
+* **Improved:** "Remove data on uninstall" also clears the stored activation time
+
 = 3.0.4 =
 * **Fixed:** Internal version number was out of sync with the plugin version, which could serve cached styles and scripts after updating
 * **Fixed:** The menu font was being applied to every text input on the site instead of only the menu search field

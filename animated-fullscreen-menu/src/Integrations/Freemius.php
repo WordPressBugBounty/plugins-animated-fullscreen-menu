@@ -7,6 +7,8 @@
 
 namespace AnimatedFullscreenMenu\Integrations;
 
+use AnimatedFullscreenMenu\Utilities\Uninstaller;
+
 /**
  * Handles Freemius SDK integration for licensing and analytics.
  */
@@ -92,6 +94,13 @@ class Freemius {
 		// Signal that SDK was initiated.
 		do_action( 'animatedfsm_loaded' );
 
+		// Plugin data cleanup on uninstall. The SDK owns the WordPress uninstall hook
+		// (a plain uninstall.php would bypass it), so the cleanup hangs off its action.
+		self::$freemius->add_action( 'after_uninstall', array( Uninstaller::class, 'run' ) );
+
+		// Skin the SDK's pricing app with the plugin palette (see admin/css/freemius-pricing.css).
+		self::$freemius->add_filter( 'pricing/css_path', array( $this, 'get_pricing_css_path' ) );
+
 		// Override i18n strings (defer to init to avoid "too early" translation notice).
 		add_action( 'init', array( $this, 'override_i18n' ) );
 	}
@@ -112,6 +121,15 @@ class Freemius {
 				'upgrade'     => __( 'Get Pro Features', 'animated-fullscreen-menu' ),
 			)
 		);
+	}
+
+	/**
+	 * Absolute path to the stylesheet that skins the Freemius pricing app.
+	 *
+	 * @return string
+	 */
+	public function get_pricing_css_path(): string {
+		return dirname( $this->plugin_file ) . '/admin/css/freemius-pricing.css';
 	}
 
 	/**

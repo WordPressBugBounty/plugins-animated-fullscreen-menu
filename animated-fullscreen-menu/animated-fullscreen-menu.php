@@ -4,7 +4,7 @@
  * Plugin URI: animated-fullscreen-menu
  * Description: Fullscreen Menu for your Website. Create a fullscreen menu with a nice animation effect and a mobile friendly navigation. Customize the menu colors, fonts, background, animations, buttons and more.
  * Author: Samuel Silva
- * Version: 3.0.4
+ * Version: 3.0.5
  * Author URI: https://samuelsilva.pt/
  * Text Domain: animated-fullscreen-menu
  * Domain Path: /languages
@@ -20,8 +20,7 @@ if ( ! defined( 'ABSPATH' ) || ! function_exists( 'add_action' ) ) {
 	exit;
 }
 
-// Define plugin constants.
-define( 'ANIMATEDFSM_VERSION', '3.0.1' );
+// Define plugin constants (ANIMATEDFSM_VERSION is defined below, once the autoloader is available).
 define( 'ANIMATEDFSM_PLUGIN_FILE', __FILE__ );
 define( 'ANIMATEDFSM_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ANIMATEDFSM_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
@@ -114,16 +113,27 @@ function animatedfsm_manual_autoload() {
 	);
 }
 
+// Load the autoloader once, as soon as this file is included.
+animatedfsm_load_autoloader();
+
+// Single source of truth for the version, so this constant can't drift from the asset cache-buster.
+define( 'ANIMATEDFSM_VERSION', \AnimatedFullscreenMenu\Plugin::VERSION );
+
+/*
+ * Freemius has to be initialized here, at include time, not on plugins_loaded.
+ * WordPress includes this file again while uninstalling the plugin, after
+ * plugins_loaded has already fired. The SDK's uninstall handler, which runs our
+ * cleanup through its after_uninstall action, only works if the SDK instance
+ * already exists at that point.
+ */
+new \AnimatedFullscreenMenu\Integrations\Freemius( ANIMATEDFSM_PLUGIN_FILE );
+
 /**
  * Initialize the plugin.
  *
  * @return void
  */
 function animatedfsm_init() {
-	// Load autoloader.
-	animatedfsm_load_autoloader();
-
-	// Initialize the plugin.
 	\AnimatedFullscreenMenu\Plugin::instance( ANIMATEDFSM_PLUGIN_FILE );
 }
 
@@ -136,9 +146,6 @@ add_action( 'plugins_loaded', 'animatedfsm_init', 10 );
  * @return void
  */
 function animatedfsm_activate() {
-	// Ensure autoloader is available.
-	animatedfsm_load_autoloader();
-
 	// Set default options if not exists.
 	if ( false === get_option( 'animatedfsm_settings' ) ) {
 		update_option( 'animatedfsm_settings', array() );
@@ -176,11 +183,6 @@ register_deactivation_hook( __FILE__, 'animatedfsm_deactivate' );
  */
 if ( ! function_exists( 'animatedfsm' ) ) {
 	function animatedfsm() {
-		// Ensure autoloader is loaded.
-		if ( ! class_exists( '\AnimatedFullscreenMenu\Integrations\Freemius' ) ) {
-			animatedfsm_load_autoloader();
-		}
-
 		return \AnimatedFullscreenMenu\Integrations\Freemius::get_instance();
 	}
 }

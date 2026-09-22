@@ -1,0 +1,479 @@
+/**
+ * Skin for the Freemius pricing app (freemius/assets/js/pricing).
+ *
+ * Loaded through the SDK's `pricing/css_path` filter (see Integrations\Freemius).
+ * The app injects its own CSS at runtime after this sheet, so every selector here
+ * carries two ids (#fs_pricing #fs_pricing_app) to win on specificity without
+ * resorting to !important everywhere.
+ *
+ * Palette comes from the plugin icon: indigo #5334d2 to violet #aa5ac1.
+ */
+
+/* ---------------------------------------------------------------------------
+ * Theme tokens. The app reads these custom properties for most of its colors.
+ * It declares them on both #fs_pricing_wrapper and #fs_pricing_app, so the
+ * override has to land on both or the inner declaration wins.
+ * ------------------------------------------------------------------------- */
+#fs_pricing #fs_pricing_wrapper,
+#fs_pricing #fs_pricing_app {
+	--afsm-brand-start: #5334d2;
+	--afsm-brand-end: #aa5ac1;
+	--afsm-brand: #6a45d8;
+	--afsm-brand-dark: #4b2fbf;
+	--afsm-brand-tint: #f4f1fd;
+	--afsm-brand-tint-strong: #e9e3fb;
+	--afsm-brand-line: #e3ddf6;
+	--afsm-gradient: linear-gradient(135deg, var(--afsm-brand-start) 0%, var(--afsm-brand-end) 100%);
+	--afsm-ink: #1f1b2e;
+	--afsm-ink-muted: #6b6784;
+	--afsm-shadow: 0 18px 40px -18px rgba(83, 52, 210, 0.25);
+	--afsm-shadow-featured: 0 0 0 2px var(--afsm-brand), 0 28px 56px -20px rgba(83, 52, 210, 0.45);
+
+	--fs-ds-theme-primary-accent-color: var(--afsm-brand);
+	--fs-ds-theme-primary-accent-color-hover: var(--afsm-brand-dark);
+	--fs-ds-theme-background-shade: var(--afsm-brand-tint);
+	--fs-ds-theme-background-accented: var(--afsm-brand-tint-strong);
+	--fs-ds-theme-divider-color: var(--afsm-brand-line);
+	--fs-ds-theme-border-color: var(--afsm-brand-line);
+	--fs-ds-theme-text-color: var(--afsm-ink);
+	--fs-ds-theme-heading-text-color: var(--afsm-ink);
+	--fs-ds-theme-muted-text-color: var(--afsm-ink-muted);
+	--fs-ds-theme-button-primary-background-color: var(--afsm-brand);
+	--fs-ds-theme-button-primary-background-hover-color: var(--afsm-brand-dark);
+	--fs-ds-theme-button-primary-border-color: transparent;
+	--fs-ds-theme-button-primary-border-hover-color: transparent;
+	--fs-ds-theme-button-primary-border-focus-color: var(--afsm-brand-tint-strong);
+	--fs-ds-theme-button-border-color: var(--afsm-brand);
+	--fs-ds-theme-button-border-hover-color: var(--afsm-brand-dark);
+	--fs-ds-theme-button-border-focus-color: var(--afsm-brand);
+	--fs-ds-theme-package-popular-background: transparent;
+	--fs-ds-theme-notice-info-border: var(--afsm-brand);
+	--fs-ds-theme-notice-info-color: var(--afsm-brand-dark);
+	/* Dark surfaces (FAQ headings, tooltips) pick up a deep indigo instead of WP slate. */
+	--fs-ds-theme-background-dark: #261d55;
+	--fs-ds-theme-background-darkest: #1b1441;
+}
+
+/* ---------------------------------------------------------------------------
+ * Page canvas.
+ * ------------------------------------------------------------------------- */
+#fs_pricing.fs-full-size-wrapper {
+	background:
+		radial-gradient(1200px 500px at 50% -10%, rgba(106, 69, 216, 0.10), transparent 70%),
+		#fafafc;
+	padding-bottom: 60px;
+}
+
+#fs_pricing #fs_pricing_app,
+#fs_pricing #fs_pricing_app .fs-app-main {
+	color: var(--afsm-ink);
+}
+
+/* ---------------------------------------------------------------------------
+ * Header: logo + plugin name, no box around it.
+ * ------------------------------------------------------------------------- */
+#fs_pricing #fs_pricing_app .fs-app-header .fs-plugin-title-and-logo {
+	background: transparent;
+	border: 0;
+	padding: 36px 0 8px;
+	margin: 0;
+}
+
+#fs_pricing #fs_pricing_app .fs-app-header .fs-plugin-title-and-logo .fs-plugin-logo {
+	width: 56px;
+	height: 56px;
+	border-radius: 14px;
+	box-shadow: 0 10px 24px -10px rgba(83, 52, 210, 0.55);
+}
+
+#fs_pricing #fs_pricing_app .fs-app-header .fs-plugin-title-and-logo h1 {
+	font-size: 30px;
+	font-weight: 800;
+	letter-spacing: -0.02em;
+	background: var(--afsm-gradient);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	color: var(--afsm-brand);
+}
+
+/* ---------------------------------------------------------------------------
+ * Billing cycle switch: segmented pill with a gradient selected state.
+ * ------------------------------------------------------------------------- */
+#fs_pricing #fs_pricing_app .fs-app-main > .fs-section {
+	margin-top: 2.5em;
+}
+
+#fs_pricing #fs_pricing_app .fs-app-main .fs-section--plans-and-pricing .fs-section--billing-cycles .fs-section-header {
+	font-size: 13px;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--afsm-ink-muted);
+	margin-bottom: 14px;
+}
+
+#fs_pricing #fs_pricing_app .fs-app-main .fs-section--plans-and-pricing .fs-section--billing-cycles .fs-billing-cycles {
+	display: inline-flex;
+	padding: 4px;
+	border-radius: 999px;
+	background: var(--afsm-brand-tint-strong);
+	overflow: visible;
+}
+
+#fs_pricing #fs_pricing_app .fs-app-main .fs-section--plans-and-pricing .fs-section--billing-cycles .fs-billing-cycles li,
+#fs_pricing #fs_pricing_app .fs-app-main .fs-section--plans-and-pricing .fs-section--billing-cycles .fs-billing-cycles li:first-child,
+#fs_pricing #fs_pricing_app .fs-app-main .fs-section--plans-and-pricing .fs-section--billing-cycles .fs-billing-cycles li:last-child {
+	border: 0;
+	border-radius: 999px;
+	padding: 9px 18px;
+	font-size: 14px;
+	font-weight: 600;
+	color: var(--afsm-ink-muted);
+	background: transparent;
+	transition: color 0.2s ease, background 0.2s ease;
+}
+
+#fs_pricing #fs_pricing_app .fs-app-main .fs-section--plans-and-pricing .fs-section--billing-cycles .fs-billing-cycles li:hover {
+	color: var(--afsm-brand-dark);
+}
+
+#fs_pricing #fs_pricing_app .fs-app-main .fs-section--plans-and-pricing .fs-section--billing-cycles .fs-billing-cycles li.fs-selected-billing-cycle {
+	background: var(--afsm-gradient);
+	color: #fff;
+	box-shadow: 0 6px 16px -8px rgba(83, 52, 210, 0.7);
+}
+
+/* ---------------------------------------------------------------------------
+ * Plan cards.
+ * ------------------------------------------------------------------------- */
+#fs_pricing #fs_pricing_app .fs-section--packages .fs-packages {
+	padding-top: 22px; /* room for the floating "most popular" badge */
+}
+
+#fs_pricing #fs_pricing_app .fs-package,
+#fs_pricing #fs_pricing_app .fs-package:first-child,
+#fs_pricing #fs_pricing_app .fs-package + .fs-package,
+#fs_pricing #fs_pricing_app .fs-package:last-child,
+#fs_pricing #fs_pricing_app .fs-package:not(.fs-featured-plan):first-child,
+#fs_pricing #fs_pricing_app .fs-package:not(.fs-featured-plan):last-child {
+	position: relative;
+	background: #fff;
+	border: 1px solid var(--afsm-brand-line);
+	border-radius: 18px;
+	box-shadow: var(--afsm-shadow);
+	margin: 0 10px;
+	overflow: visible;
+	transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+#fs_pricing #fs_pricing_app .fs-package:hover {
+	transform: translateY(-3px);
+}
+
+#fs_pricing #fs_pricing_app .fs-package.fs-featured-plan {
+	border-color: transparent;
+	box-shadow: var(--afsm-shadow-featured);
+	transform: translateY(-8px);
+}
+
+#fs_pricing #fs_pricing_app .fs-package.fs-featured-plan:hover {
+	transform: translateY(-11px);
+}
+
+/* "Most popular" as a floating pill instead of a header band. */
+#fs_pricing #fs_pricing_app .fs-package.fs-featured-plan .fs-most-popular {
+	position: absolute;
+	top: -15px;
+	left: 50%;
+	transform: translateX(-50%);
+	margin: 0;
+	padding: 0 16px;
+	line-height: 30px;
+	font-size: 11px;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	color: #fff;
+	background: var(--afsm-gradient);
+	border-radius: 999px;
+	box-shadow: 0 8px 18px -8px rgba(83, 52, 210, 0.8);
+	white-space: nowrap;
+}
+
+/* The badge wraps its text in an h4, which otherwise inherits the admin heading color. */
+#fs_pricing #fs_pricing_app .fs-package.fs-featured-plan .fs-most-popular h4,
+#fs_pricing #fs_pricing_app .fs-package.fs-featured-plan .fs-most-popular h4 strong {
+	margin: 0;
+	padding: 0;
+	color: #fff;
+	font-size: inherit;
+	font-weight: inherit;
+	letter-spacing: inherit;
+	line-height: inherit;
+}
+
+/* Plan name: quiet uppercase label, no grey band. */
+#fs_pricing #fs_pricing_app .fs-package .fs-plan-title,
+#fs_pricing #fs_pricing_app .fs-package:not(.fs-featured-plan):first-child .fs-plan-title,
+#fs_pricing #fs_pricing_app .fs-package:not(.fs-featured-plan):last-child .fs-plan-title {
+	background: transparent;
+	border: 0;
+	border-radius: 18px 18px 0 0;
+	padding: 30px 0 4px;
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	color: var(--afsm-brand-dark);
+}
+
+#fs_pricing #fs_pricing_app .fs-package .fs-plan-description {
+	text-transform: none;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 1.5;
+	color: var(--afsm-ink-muted);
+	max-width: 260px;
+	margin: 6px auto 0;
+}
+
+/* Price block. */
+#fs_pricing #fs_pricing_app .fs-package .fs-selected-pricing-amount {
+	margin-top: 18px;
+}
+
+#fs_pricing #fs_pricing_app .fs-package .fs-selected-pricing-amount .fs-selected-pricing-amount-integer {
+	font-size: 64px;
+	font-weight: 800;
+	letter-spacing: -0.04em;
+	margin: 0 2px;
+	color: var(--afsm-ink);
+}
+
+#fs_pricing #fs_pricing_app .fs-package .fs-selected-pricing-amount .fs-currency-symbol {
+	font-size: 26px;
+	font-weight: 700;
+	color: var(--afsm-ink-muted);
+}
+
+#fs_pricing #fs_pricing_app .fs-package .fs-selected-pricing-amount .fs-selected-pricing-amount-fraction-container {
+	color: var(--afsm-ink-muted);
+	font-weight: 600;
+}
+
+#fs_pricing #fs_pricing_app .fs-package .fs-selected-pricing-cycle {
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--afsm-ink-muted);
+}
+
+#fs_pricing #fs_pricing_app .fs-package .fs-selected-pricing-license-quantity {
+	color: var(--afsm-brand);
+	font-weight: 600;
+}
+
+/* Support line rendered as a soft chip. */
+#fs_pricing #fs_pricing_app .fs-package .fs-support-and-main-features .fs-plan-support {
+	display: inline-block;
+	padding: 6px 14px;
+	border-radius: 999px;
+	background: var(--afsm-brand-tint);
+	color: var(--afsm-brand-dark);
+	font-size: 13px;
+	font-weight: 600;
+	margin-bottom: 18px;
+}
+
+/* License quantity rows. */
+#fs_pricing #fs_pricing_app .fs-package .fs-license-quantities {
+	border-top: 1px solid var(--afsm-brand-line);
+	border-bottom: 1px solid var(--afsm-brand-line);
+}
+
+#fs_pricing #fs_pricing_app .fs-package .fs-license-quantities .fs-license-quantity-container {
+	transition: background 0.15s ease;
+}
+
+#fs_pricing #fs_pricing_app .fs-package .fs-license-quantities .fs-license-quantity-container:hover {
+	background: var(--afsm-brand-tint);
+}
+
+#fs_pricing #fs_pricing_app .fs-package .fs-license-quantities .fs-license-quantity-selected,
+#fs_pricing #fs_pricing_app .fs-package .fs-license-quantities .fs-license-quantity-selected .fs-license-quantity,
+#fs_pricing #fs_pricing_app .fs-package .fs-license-quantities .fs-license-quantity-selected .fs-license-quantity-price {
+	background: var(--afsm-brand-tint-strong);
+	color: var(--afsm-ink);
+	font-weight: 600;
+}
+
+#fs_pricing #fs_pricing_app .fs-package .fs-license-quantities .fs-license-quantity-selected,
+#fs_pricing #fs_pricing_app .fs-package.fs-featured-plan .fs-license-quantities .fs-license-quantity-selected {
+	border-color: var(--afsm-brand-line);
+	box-shadow: inset 3px 0 0 var(--afsm-brand);
+}
+
+/* Annual/lifetime cycles show the regular price struck through; keep the strike on-palette. */
+#fs_pricing #fs_pricing_app .fs-package .fs-undiscounted-price {
+	color: var(--afsm-ink-muted);
+	font-size: 13px;
+}
+
+#fs_pricing #fs_pricing_app .fs-package .fs-undiscounted-price:after {
+	background-color: var(--afsm-brand-end);
+	opacity: 0.7;
+}
+
+#fs_pricing #fs_pricing_app .fs-package .fs-license-quantities input[type="radio"] {
+	accent-color: var(--afsm-brand);
+}
+
+/* The discount is a table cell holding a span; the span carries the visual. */
+#fs_pricing #fs_pricing_app .fs-package .fs-license-quantities .fs-license-quantity-discount {
+	background: transparent;
+}
+
+#fs_pricing #fs_pricing_app .fs-package .fs-license-quantities .fs-license-quantity-discount span {
+	background: var(--afsm-gradient);
+	border: 0;
+	color: #fff;
+	border-radius: 999px;
+	padding: 4px 11px;
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: 0.02em;
+}
+
+/* Upgrade buttons. */
+#fs_pricing #fs_pricing_app .fs-package .fs-upgrade-button-container {
+	padding: 0 22px;
+}
+
+#fs_pricing #fs_pricing_app .fs-button {
+	border-radius: 12px;
+	font-size: 15px;
+	letter-spacing: 0.05em;
+	padding: 14px 12px;
+	transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+
+#fs_pricing #fs_pricing_app .fs-button.fs-button--type-primary {
+	background: var(--afsm-gradient);
+	border: 0;
+	color: #fff;
+	box-shadow: 0 12px 24px -10px rgba(83, 52, 210, 0.75);
+}
+
+#fs_pricing #fs_pricing_app .fs-button.fs-button--type-primary:hover:not(:disabled),
+#fs_pricing #fs_pricing_app .fs-button.fs-button--type-primary:focus:not(:disabled) {
+	background: var(--afsm-gradient);
+	transform: translateY(-1px);
+	box-shadow: 0 16px 28px -10px rgba(83, 52, 210, 0.9);
+}
+
+#fs_pricing #fs_pricing_app .fs-button.fs-button--outline {
+	background: #fff;
+	border: 1.5px solid var(--afsm-brand);
+	color: var(--afsm-brand-dark);
+	padding-top: 12.5px;
+	padding-bottom: 12.5px;
+}
+
+#fs_pricing #fs_pricing_app .fs-button.fs-button--outline:hover:not(:disabled),
+#fs_pricing #fs_pricing_app .fs-button.fs-button--outline:focus:not(:disabled) {
+	background: var(--afsm-brand-tint);
+	transform: translateY(-1px);
+}
+
+/* Feature list. */
+#fs_pricing #fs_pricing_app .fs-package .fs-plan-features {
+	margin: 18px 22px 4px;
+}
+
+#fs_pricing #fs_pricing_app .fs-package .fs-plan-features li {
+	font-size: 14px;
+	align-items: flex-start;
+	line-height: 1.45;
+}
+
+#fs_pricing #fs_pricing_app .fs-package .fs-plan-features li .fs-feature-title {
+	color: #3d3954;
+}
+
+#fs_pricing #fs_pricing_app .fs-package .fs-plan-features li > .fs-icon,
+#fs_pricing #fs_pricing_app .fs-package .fs-plan-features li > span:first-child {
+	color: var(--afsm-brand);
+}
+
+#fs_pricing #fs_pricing_app .fs-package .fs-plan-features li .fs-tooltip {
+	color: #b3aecb;
+}
+
+/* Secondary cards: "need more sites" box, guarantee, testimonials, FAQ. */
+#fs_pricing #fs_pricing_app .fs-app-main .fs-section--custom-implementation,
+#fs_pricing #fs_pricing_app .fs-app-main .fs-section--money-back-guarantee {
+	background: #fff;
+	border: 1px solid var(--afsm-brand-line);
+	border-radius: 18px;
+	box-shadow: var(--afsm-shadow);
+	max-width: 720px;
+	padding: 24px 28px;
+}
+
+#fs_pricing #fs_pricing_app .fs-app-main .fs-section--custom-implementation h2 {
+	color: var(--afsm-ink);
+	font-size: 18px;
+	font-weight: 700;
+}
+
+#fs_pricing #fs_pricing_app .fs-app-main .fs-section--custom-implementation a {
+	color: var(--afsm-brand-dark);
+	font-weight: 600;
+}
+
+#fs_pricing #fs_pricing_app .fs-app-main .fs-section--money-back-guarantee .fs-money-back-guarantee-title {
+	color: var(--afsm-brand-dark);
+}
+
+#fs_pricing #fs_pricing_app .fs-app-main .fs-section--money-back-guarantee .fs-button {
+	width: auto;
+	background: #fff;
+	border: 1.5px solid var(--afsm-brand);
+	color: var(--afsm-brand-dark);
+	font-size: 13px;
+	padding: 9px 20px;
+	border-radius: 999px;
+}
+
+#fs_pricing #fs_pricing_app .fs-app-main .fs-section--money-back-guarantee .fs-button:hover:not(:disabled) {
+	background: var(--afsm-brand-tint);
+}
+
+#fs_pricing #fs_pricing_app .fs-app-main .fs-section--testimonials .fs-testimonial {
+	border: 1px solid var(--afsm-brand-line);
+	border-radius: 18px;
+	box-shadow: var(--afsm-shadow);
+}
+
+#fs_pricing #fs_pricing_app .fs-app-main .fs-section--faq .fs-section--faq-items .fs-section--faq-item {
+	border: 1px solid var(--afsm-brand-line);
+	border-radius: 14px;
+	overflow: hidden;
+	box-shadow: var(--afsm-shadow);
+}
+
+#fs_pricing #fs_pricing_app .fs-app-main .fs-section--faq .fs-section--faq-items .fs-section--faq-item h3 {
+	border: 0;
+}
+
+/* Respect users who asked for less motion. */
+@media (prefers-reduced-motion: reduce) {
+	#fs_pricing #fs_pricing_app .fs-package,
+	#fs_pricing #fs_pricing_app .fs-package.fs-featured-plan,
+	#fs_pricing #fs_pricing_app .fs-package:hover,
+	#fs_pricing #fs_pricing_app .fs-package.fs-featured-plan:hover,
+	#fs_pricing #fs_pricing_app .fs-button:hover:not(:disabled) {
+		transform: none;
+		transition: none;
+	}
+}

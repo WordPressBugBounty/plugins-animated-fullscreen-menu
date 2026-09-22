@@ -10,7 +10,6 @@ namespace AnimatedFullscreenMenu;
 use AnimatedFullscreenMenu\Admin\Admin;
 use AnimatedFullscreenMenu\Frontend\Frontend;
 use AnimatedFullscreenMenu\Blocks\BlockManager;
-use AnimatedFullscreenMenu\Integrations\Freemius as FreemiusIntegration;
 use AnimatedFullscreenMenu\Utilities\Options;
 
 /**
@@ -23,7 +22,7 @@ final class Plugin {
 	 *
 	 * @var string
 	 */
-	public const VERSION = '3.0.4';
+	public const VERSION = '3.0.5';
 
 	/**
 	 * Minimum PHP version required.
@@ -174,8 +173,7 @@ final class Plugin {
 	 * @return void
 	 */
 	public function init_components(): void {
-		// Initialize Freemius integration.
-		new FreemiusIntegration( $this->plugin_file );
+		// Freemius is initialized at include time in the main plugin file (see the note there).
 
 		// Initialize admin.
 		if ( is_admin() ) {
