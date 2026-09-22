@@ -4,12 +4,12 @@
  * Plugin URI: animated-fullscreen-menu
  * Description: Fullscreen Menu for your Website. Create a fullscreen menu with a nice animation effect and a mobile friendly navigation. Customize the menu colors, fonts, background, animations, buttons and more.
  * Author: Samuel Silva
- * Version: 3.0.3
+ * Version: 3.0.4
  * Author URI: https://samuelsilva.pt/
  * Text Domain: animated-fullscreen-menu
  * Domain Path: /languages
  * Requires at least: 5.0
- * Tested up to: 6.7
+ * Tested up to: 7.1
  * Requires PHP: 7.4
  *
  * @package AnimatedFullscreenMenu

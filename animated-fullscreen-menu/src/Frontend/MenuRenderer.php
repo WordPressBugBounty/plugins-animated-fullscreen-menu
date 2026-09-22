@@ -263,7 +263,7 @@ class MenuRenderer {
 		<style>
 		.animatedfsmenu,
 		.afsmenu_search .search_submit,
-		input[type="text"],
+		.afsmenu_search input[type="text"],
 		.afs-cart-title {
 			font-family: <?php echo esc_attr( $settings['font'] ); ?> !important;
 		}

@@ -23,7 +23,7 @@ final class Plugin {
 	 *
 	 * @var string
 	 */
-	public const VERSION = '3.0.1';
+	public const VERSION = '3.0.4';
 
 	/**
 	 * Minimum PHP version required.

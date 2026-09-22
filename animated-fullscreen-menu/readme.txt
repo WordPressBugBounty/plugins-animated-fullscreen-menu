@@ -2,9 +2,9 @@
 Contributors: samuelsilvapt
 Author: Samuel Silva
 Tags: menu, fullscreenmenu, woocommercemenu, animatedmenu, mobilemenu
-Tested up to: 6.9
+Tested up to: 7.1
 Requires at least: 5.0
-Stable tag: 3.0.3
+Stable tag: 3.0.4
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -102,6 +102,13 @@ Sure. By default your data will not erased. To clean your options, please select
 8. Menu Settings - Menu Content
 
 == Changelog ==
+= 3.0.4 =
+* **Fixed:** Internal version number was out of sync with the plugin version, which could serve cached styles and scripts after updating
+* **Fixed:** The menu font was being applied to every text input on the site instead of only the menu search field
+* **Fixed:** PHP warning during uninstall when the plugin had never been configured
+* **Improved:** "Remove data on uninstall" now also clears the stored version and settings backups
+* **Compatibility:** Tested up to WordPress 7.1
+
 = 3.0.3 =
 * **Fixed:** PRO features are now unlocked as soon as a license or trial is active, without requiring a separate download
 
